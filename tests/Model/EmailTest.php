@@ -1,6 +1,7 @@
 <?php
 
 use Davaxi\AllMySMS\Model\Email as Email;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class EmailMockup
@@ -17,7 +18,7 @@ class EmailMockup extends Email
     }
 }
 
-class EmailTest extends PHPUnit_Framework_TestCase
+class EmailTest extends TestCase
 {
     /**
      * @var EmailMockup
