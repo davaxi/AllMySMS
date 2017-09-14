@@ -36,17 +36,17 @@ abstract class Model
     /**
      * Allowed MMS Picture extensions
      */
-    const ALLOWED_PICTURE_EXTENSIONS = ['.jpg', '.png', '.gif'];
+    const ALLOWED_PICTURE_EXTENSIONS = '.jpg, .png, .gif';
 
     /**
      * Allowed MMS Video extensions
      */
-    const ALLOWED_VIDEO_EXTENSIONS = ['.3gp'];
+    const ALLOWED_VIDEO_EXTENSIONS = '.3gp';
 
     /**
      * Allowed MMS Sound extensions
      */
-    const ALLOWED_SOUND_EXTENSIONS = ['.amr', '.mid'];
+    const ALLOWED_SOUND_EXTENSIONS = '.amr, .mid';
 
     /**
      * @param $sender
@@ -170,8 +170,9 @@ abstract class Model
     protected function checkSoundUrl($url)
     {
         $extension = $this->getExtension($url);
-        if (!in_array($extension, static::ALLOWED_SOUND_EXTENSIONS, true)) {
-            throw new \InvalidArgumentException('Invalid sound path. Allowed only : ' . implode(', ', static::ALLOWED_SOUND_EXTENSIONS));
+        $allowedExtensions = explode(',', static::ALLOWED_SOUND_EXTENSIONS);
+        if (!in_array($extension, $allowedExtensions, true)) {
+            throw new \InvalidArgumentException('Invalid sound path. Allowed only : ' . static::ALLOWED_SOUND_EXTENSIONS);
         }
     }
 
@@ -181,8 +182,9 @@ abstract class Model
     protected function checkVideoUrl($url)
     {
         $extension = $this->getExtension($url);
-        if (!in_array($extension, static::ALLOWED_VIDEO_EXTENSIONS, true)) {
-            throw new \InvalidArgumentException('Invalid videp path. Allowed only : ' . implode(', ', static::ALLOWED_VIDEO_EXTENSIONS));
+        $allowedExtensions = explode(',', static::ALLOWED_VIDEO_EXTENSIONS);
+        if (!in_array($extension, $allowedExtensions, true)) {
+            throw new \InvalidArgumentException('Invalid videp path. Allowed only : ' . static::ALLOWED_VIDEO_EXTENSIONS);
         }
     }
 
@@ -192,8 +194,9 @@ abstract class Model
     protected function checkPictureUrl($url)
     {
         $extension = $this->getExtension($url);
-        if (!in_array($extension, static::ALLOWED_PICTURE_EXTENSIONS, true)) {
-            throw new \InvalidArgumentException('Invalid picture path. Allowed only : ' . implode(', ', static::ALLOWED_PICTURE_EXTENSIONS));
+        $allowedExtensions = explode(',', static::ALLOWED_PICTURE_EXTENSIONS);
+        if (!in_array($extension, $allowedExtensions, true)) {
+            throw new \InvalidArgumentException('Invalid picture path. Allowed only : ' . static::ALLOWED_PICTURE_EXTENSIONS);
         }
     }
 }
