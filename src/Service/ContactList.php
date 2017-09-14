@@ -24,11 +24,9 @@ class ContactList extends Service
      * @param null $subAccount
      * @return array
      */
-    public function createList($listName, array $fields, $locked = false, $subAccount = null)
+    public function createList($listName, array $fields, $locked = null, $subAccount = null)
     {
-        if (!$listName) {
-            throw new \InvalidArgumentException('Empty list name is not authorized');
-        }
+        $this->checkListName($listName);
         $expectedField = [
             'FIELDNAME' => '',
             'FILTER' => 0,
@@ -128,9 +126,7 @@ class ContactList extends Service
      */
     public function deleteList($listName, $subAccount = null)
     {
-        if (!$listName) {
-            throw new \InvalidArgumentException('Empty list name is not authorized');
-        }
+        $this->checkListName($listName);
         return $this->client->request('/deleteList/', [
             'listName' => $listName,
             'subAccount' => $subAccount,
@@ -156,14 +152,8 @@ class ContactList extends Service
      */
     public function insertContacts($listName, array $contacts, $subAccount = null)
     {
-        if (!$listName) {
-            throw new \InvalidArgumentException('Empty list name is not authorized');
-        }
-        foreach ($contacts as $contact) {
-            if (!isset($contact['MOBILEPHONE']) || !$contact['MOBILEPHONE']) {
-                throw new \InvalidArgumentException('Missing MOBILEPHONE field');
-            }
-        }
+        $this->checkListName($listName);
+        $this->checkContacts($contacts);
         return $this->client->request('/createList/', [
             'populateData' => json_encode([
                 'DATA' => [
@@ -193,14 +183,8 @@ class ContactList extends Service
      */
     public function deleteContacts($listName, array $contacts, $subAccount = null)
     {
-        if (!$listName) {
-            throw new \InvalidArgumentException('Empty list name is not authorized');
-        }
-        foreach ($contacts as $contact) {
-            if (!isset($contact['MOBILEPHONE']) || !$contact['MOBILEPHONE']) {
-                throw new \InvalidArgumentException('Missing MOBILEPHONE field');
-            }
-        }
+        $this->checkListName($listName);
+        $this->checkContacts($contacts);
         return $this->client->request('/createList/', [
             'deleteData' => json_encode([
                 'DATA' => [
@@ -210,5 +194,27 @@ class ContactList extends Service
                 ],
             ]),
         ]);
+    }
+
+    /**
+     * @param string $listName
+     */
+    protected function checkListName($listName)
+    {
+        if (!$listName) {
+            throw new \InvalidArgumentException('Empty list name is not authorized');
+        }
+    }
+
+    /**
+     * @param array $contacts
+     */
+    protected function checkContacts(array $contacts)
+    {
+        foreach ($contacts as $contact) {
+            if (!isset($contact['MOBILEPHONE']) || !$contact['MOBILEPHONE']) {
+                throw new \InvalidArgumentException('Missing MOBILEPHONE field');
+            }
+        }
     }
 }

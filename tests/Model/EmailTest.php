@@ -68,13 +68,13 @@ class EmailTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('FromAlias', $alias);
     }
 
-    public function testSetTo()
+    public function testSetRecipient()
     {
-        $to = $this->email->getAttribute('to');
+        $to = $this->email->getAttribute('recipient');
         $this->assertEmpty($to);
 
-        $this->email->setTo('FromTo');
-        $to = $this->email->getAttribute('to');
+        $this->email->setRecipient('FromTo');
+        $to = $this->email->getAttribute('recipient');
         $this->assertEquals('FromTo', $to);
     }
 

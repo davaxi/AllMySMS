@@ -19,12 +19,6 @@ class Acknowledgment extends WebHook
     ];
 
     /**
-     * Unique SMS id
-     * @var string
-     */
-    protected $smsId;
-
-    /**
      * SMS status code
      * @var string
      */
@@ -37,24 +31,6 @@ class Acknowledgment extends WebHook
     protected $statusText;
 
     /**
-     * SMS date of accused operator
-     * @var string
-     */
-    protected $receptionDate;
-
-    /**
-     * SMS phone number (in international format)
-     * @var string
-     */
-    protected $phoneNumber;
-
-    /**
-     * SMS Campaign Id
-     * @var string
-     */
-    protected $campaignId;
-
-    /**
      * @param array $request
      * @return void
      */
@@ -62,29 +38,13 @@ class Acknowledgment extends WebHook
     {
         $request = array_merge(
             [
-                'smsId' => '',
                 'status' => '',
                 'statusText' => '',
-                'receptionDate' => '',
-                'phoneNumber' => '',
-                'campaignId' => '',
             ],
             $request
         );
-        $this->smsId = $request['smsId'];
         $this->status = $request['status'];
         $this->statusText = $request['statusText'];
-        $this->receptionDate = $request['receptionDate'];
-        $this->phoneNumber = $request['phoneNumber'];
-        $this->campaignId = $request['campaignId'];
-    }
-
-    /**
-     * @return string
-     */
-    public function getSMSId()
-    {
-        return $this->smsId;
     }
 
     /**
@@ -101,29 +61,5 @@ class Acknowledgment extends WebHook
     public function getStatusMessage()
     {
         return $this->statusText;
-    }
-
-    /**
-     * @return string
-     */
-    public function getReceptionDate()
-    {
-        return $this->receptionDate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhoneNumber()
-    {
-        return $this->phoneNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCampaignId()
-    {
-        return $this->campaignId;
     }
 }

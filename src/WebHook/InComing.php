@@ -11,34 +11,10 @@ use Davaxi\AllMySMS\WebHook;
 class InComing extends WebHook
 {
     /**
-     * Unique SMS id
-     * @var string
-     */
-    protected $smsId;
-
-    /**
      * Unique response SMS id
      * @var string
      */
     protected $smsMoId;
-
-    /**
-     * SMS date of accused operator
-     * @var string
-     */
-    protected $receptionDate;
-
-    /**
-     * SMS phone number (in international format)
-     * @var string
-     */
-    protected $phoneNumber;
-
-    /**
-     * SMS Campaign Id
-     * @var string
-     */
-    protected $campaignId;
 
     /**
      * SMS Message
@@ -52,31 +28,16 @@ class InComing extends WebHook
      */
     public function loadRequest(array $request)
     {
+        parent::loadRequest($request);
         $request = array_merge(
             [
-                'smsId' => '',
                 'smsMoId' => '',
-                'receptionDate' => '',
-                'phoneNumber' => '',
-                'campaignId' => '',
                 'message' => '',
             ],
             $request
         );
-        $this->smsId = $request['smsId'];
         $this->smsMoId = $request['smsMoId'];
-        $this->receptionDate = $request['receptionDate'];
-        $this->phoneNumber = $request['phoneNumber'];
-        $this->campaignId = $request['campaignId'];
         $this->message = $request['message'];
-    }
-
-    /**
-     * @return string
-     */
-    public function getSMSId()
-    {
-        return $this->smsId;
     }
 
     /**
@@ -95,27 +56,4 @@ class InComing extends WebHook
         return $this->message;
     }
 
-    /**
-     * @return string
-     */
-    public function getReceptionDate()
-    {
-        return $this->receptionDate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhoneNumber()
-    {
-        return $this->phoneNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCampaignId()
-    {
-        return $this->campaignId;
-    }
 }

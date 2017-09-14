@@ -13,7 +13,7 @@ class MMS extends Model
     /**
      * @var string
      */
-    protected $id;
+    protected $mmsId;
 
     /**
      * @var string
@@ -81,11 +81,11 @@ class MMS extends Model
 
     /**
      * Set ID for SMS (for Ack)
-     * @param string $id
+     * @param string $mmsId
      */
-    public function setId($id)
+    public function setMMSId($mmsId)
     {
-        $this->id = $id;
+        $this->mmsId = $mmsId;
     }
 
     /**
@@ -220,7 +220,7 @@ class MMS extends Model
     public function getData()
     {
         return [
-            'id' => $this->id,
+            'id' => $this->mmsId,
             'date' => $this->date,
             'recipients' => $this->recipients,
             'message' => $this->message,

@@ -96,7 +96,7 @@ $sms->setDate('2017-09-01 00:00:00');
 $response = $service->simpleSMS($sms);
 
 // Send SMS (with optional configuration)
-$response = $service->SMS($sms);
+$response = $service->sendSMS($sms);
 
 // If simulate 
 $response = $service->simulateSMS($sms);
@@ -137,7 +137,7 @@ $mms->setDate('2017-09-01 00:00:00');
 $sms->activeEmailNotification();
 
 // Send MMS
-$response = $service->MMS($sms);
+$response = $service->sendMMS($sms);
 
 // To get MMS Length 
 $smsLength = $sms->getLength();
@@ -159,7 +159,7 @@ $email = new \Davaxi\ALlMySMS\Model\Email();
 
 // Required
 $email->setFrom('my@email.fr');
-$email->setTo('email@test.fr');
+$email->setRecipient('email@test.fr');
 $email->setSubject('My Subject');
 $email->setContentHtml('My HTML content');
 
@@ -174,5 +174,5 @@ $email->setCampaignName('My Campaign Name');
 $email->setReplyTo('replay@email.fr');
 
 // Send Email
-$service->Email($email);
+$service->sendEmail($email);
 

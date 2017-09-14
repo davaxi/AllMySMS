@@ -83,13 +83,13 @@ class Client
 
         $path = $this->getUrl($path);
         try {
-            $ch = curl_init();
-            curl_setopt($ch,CURLOPT_URL, $path);
-            curl_setopt($ch,CURLOPT_POST, true);
-            curl_setopt($ch,CURLOPT_POSTFIELDS, $params);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $result = curl_exec($ch);
-            curl_close($ch);
+            $curl = curl_init();
+            curl_setopt($curl,CURLOPT_URL, $path);
+            curl_setopt($curl,CURLOPT_POST, true);
+            curl_setopt($curl,CURLOPT_POSTFIELDS, $params);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            $result = curl_exec($curl);
+            curl_close($curl);
         }
         catch (\Exception $e) {
             throw new \Exception('Service unreachable or too long to answer. Exception: ' . $e->getMessage());

@@ -23,7 +23,7 @@ class Email extends Model
     /**
      * @var string
      */
-    protected $to;
+    protected $recipient;
 
     /**
      * @var string
@@ -76,11 +76,11 @@ class Email extends Model
     }
 
     /**
-     * @param string $to
+     * @param string $recipient
      */
-    public function setTo($to)
+    public function setRecipient($recipient)
     {
-        $this->to = $to;
+        $this->recipient = $recipient;
     }
 
     /**
@@ -139,7 +139,7 @@ class Email extends Model
     {
         return [
             'FROM' => $this->from,
-            'TO' => $this->to,
+            'TO' => $this->recipient,
             'SUBJECT' => $this->subject,
             'DATE' => $this->date,
             'HTML' => $this->contentHTML ? base64_encode($this->contentHTML) : null,

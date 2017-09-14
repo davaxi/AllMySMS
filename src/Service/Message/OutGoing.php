@@ -70,9 +70,9 @@ class OutGoing extends Message
      * @param SMS $sms
      * @return array
      */
-    public function SMS(SMS $sms)
+    public function sendSMS(SMS $sms)
     {
-        return $this->sendSMS($sms, false);
+        return $this->callSMS($sms, false);
     }
 
     /**
@@ -91,7 +91,7 @@ class OutGoing extends Message
      */
     public function simulateSMS(SMS $sms)
     {
-        return $this->sendSMS($sms, false);
+        return $this->callSMS($sms, false);
     }
 
     /**
@@ -116,7 +116,7 @@ class OutGoing extends Message
      * @param MMS $mms
      * @return array
      */
-    public function MMS(MMS $mms)
+    public function sendMMS(MMS $mms)
     {
         $data = $mms->getData();
         $this->checkMMSData($data);
@@ -150,7 +150,7 @@ class OutGoing extends Message
         ]);
     }
 
-    public function Email(Email $email)
+    public function sendEmail(Email $email)
     {
         $data = $email->getData();
         $this->checkEmailData($data);
@@ -187,7 +187,7 @@ class OutGoing extends Message
      * @param $simulate
      * @return array
      */
-    protected function sendSMS(SMS $sms, $simulate)
+    protected function callSMS(SMS $sms, $simulate)
     {
         $data = $sms->getData();
         $this->checkSMSData($data);

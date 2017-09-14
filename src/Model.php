@@ -98,10 +98,10 @@ abstract class Model
      */
     protected function checkRecipientParams(array $params)
     {
-        $i = 0;
+        $index = 0;
         ksort($params);
         foreach ($params as $key => $value) {
-            $expectedKey = 'PARAMS_' . $i;
+            $expectedKey = 'PARAMS_' . $index;
             if ($key !== $expectedKey) {
                 throw new \InvalidArgumentException('Invalid params key ' . $key . '. Expected key : ' . $expectedKey);
             }
