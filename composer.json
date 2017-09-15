@@ -1,0 +1,38 @@
+{
+  "name": "davaxi/allmysms",
+  "description": "A PHP client library for accessing AllMySMS APIs",
+  "version": "0.0.1",
+  "type": "library",
+  "keywords": [
+    "sms",
+    "client",
+    "library",
+    "allmysms"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "David Patiashvili",
+      "email": "stratagem.david@gmail.com",
+      "homepage": "https://www.patiashvili.fr/",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/davaxi/AllMySMS/issues",
+    "source": "https://github.com/davaxi/AllMySMS/releases"
+  },
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=5.3.0"
+  },
+  "require-dev": {
+    "php": ">=5.3.0",
+    "codeclimate/php-test-reporter": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Davaxi\\AllMySMS\\": "src/"
+    }
+  }
+}
