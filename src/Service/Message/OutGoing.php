@@ -130,7 +130,7 @@ class OutGoing extends Message
             $data['recipients']
         );
 
-        return $this->client->request('/', [
+        return $this->client->request('/sendMms', [
             'mmsData' => json_encode(
                 [
                     'DATA' => [
@@ -140,10 +140,10 @@ class OutGoing extends Message
                         'MAIL_NOTIF' => $data['emailNotification'] ? '1' : '0',
                         'MMS' => $recipientsData,
                         'MSGCLASS' => $this->getMMSClassFromType($data['type']),
-                        'IMAGE' => $data['imageUrl'],
-                        'VIDEO' => $data['videoUrl'],
-                        'SOUND' => $data['soundUrl'],
-                        'CLIMSGID' => $data['id'],
+                        'IMAGE' => $data['pictureUrl'] ?? null ,
+                        'VIDEO' => $data['videoUrl'] ?? null,
+                        'SOUND' => $data['soundUrl'] ?? null,
+                        'CLIMSGID' => $data['id'] ?? null,
                     ]
                 ]
             )
@@ -155,7 +155,7 @@ class OutGoing extends Message
         $data = $email->getData();
         $this->checkEmailData($data);
 
-        return $this->client->request('/sendEmail/', [
+        return $this->client->request('/sendEmail', [
             'emailData' => json_encode(
                 [
                     'DATA' => $data
@@ -205,7 +205,7 @@ class OutGoing extends Message
         );
 
         return $this->client->request(
-            $simulate ? '/simulateCampaign/' : '/sendSMS/', [
+            $simulate ? '/simulateCampaign/' : '/sendSms', [
             'smsData' => json_encode(
                 [
                     'DATA' => [
