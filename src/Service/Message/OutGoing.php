@@ -91,7 +91,7 @@ class OutGoing extends Message
      */
     public function simulateSMS(SMS $sms)
     {
-        return $this->callSMS($sms, false);
+        return $this->callSMS($sms, true);
     }
 
     /**
